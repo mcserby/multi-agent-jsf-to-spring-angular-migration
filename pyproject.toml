@@ -5,7 +5,7 @@ description = "Multi-agent audit + fixer framework for JSF -> Spring Boot + Angu
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "mihai.serban" }]
+authors = [{ name = "Mihai Serban", email = "mcserby@gmail.com" }]
 dependencies = [
     "click>=8.1",
     "pydantic>=2.6",

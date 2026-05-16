@@ -37,7 +37,7 @@ pipeline is fully usable on its own.
 In your migration project's root:
 
 ```bash
-pip install git+https://github.com/<owner>/multi-agent-jsf-to-spring-angular-migration.git
+pip install git+https://github.com/mcserby/multi-agent-jsf-to-spring-angular-migration.git
 ```
 
 Then make sure Google's official `gemini-cli` is on `PATH` and authenticated
@@ -85,7 +85,8 @@ the pivot from "translator" to "auditor".
 ```bash
 uv venv
 uv pip install -e .[dev]
-.venv/Scripts/python -m pytest -q
+.venv/Scripts/python -m pytest -q          # Windows
+# .venv/bin/python -m pytest -q            # Linux / macOS
 ```
 
 The tests mock `subprocess.run` so they don't need `gemini-cli` installed.

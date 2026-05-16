@@ -160,7 +160,7 @@ Statuses: `pending | in_progress | completed | failed | interrupted`.
 Installable Python package. The consuming migration project does:
 
 ```bash
-pip install git+https://github.com/<owner>/multi-agent-jsf-to-spring-angular-migration.git
+pip install git+https://github.com/mcserby/multi-agent-jsf-to-spring-angular-migration.git
 ```
 
 Then in the migration project root:
