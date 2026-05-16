@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.tmp
+
+# migration runtime artifacts (when used in a consuming project)
+state.json
+specs/
+gaps/
+migration-audit/

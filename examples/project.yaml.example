@@ -1,0 +1,62 @@
+# jsf-migrator project config
+# Place this file as `project.yaml` in your migration project's root.
+# `jsf-migrate init --jsf <path> --spring <path> --angular <path>` can scaffold a
+# fresh copy and (when gemini-cli is available) auto-propose the `features:` list.
+
+version: 1
+
+source:
+  jsf:
+    path: ./legacy-jsf
+    framework_version: "JSF 2.3"
+    bean_style: CDI            # CDI | ManagedBean | Mixed
+  spring:
+    path: ./spring-app
+    java_version: 21
+    package_root: com.example.myapp
+  angular:
+    path: ./angular-app
+    version: 17
+    component_style: standalone   # standalone | module
+
+gemini:
+  # Exact model id Google publishes for what we casually call "Gemini 2.5 Pro 3.1 Preview"
+  # — confirm in the Vertex AI / AI Studio console at runtime.
+  model: gemini-2.5-pro
+  yolo: true
+  extra_args: []                  # appended to every `gemini` invocation
+  # Stderr/stdout substrings (case-insensitive) that signal graceful-stop.
+  quota_patterns:
+    - quota
+    - rate limit
+    - RESOURCE_EXHAUSTED
+    - "429"
+    - exceeded
+  timeout_seconds: 900            # per-agent invocation
+
+paths:
+  prompts: ./prompts              # optional override dir; falls back to bundled defaults
+  output: ./migration-audit       # specs/ and gaps/ live here
+
+# The Feature Mapper proposes these. Review, edit, and flip `approved: true`
+# on each feature you want audited.
+features:
+  - id: user-management
+    description: "User CRUD and authentication"
+    jsf:
+      pages:
+        - src/main/webapp/users/list.xhtml
+        - src/main/webapp/users/edit.xhtml
+      beans:
+        - src/main/java/com/example/legacy/users/UserBean.java
+    spring:
+      controllers:
+        - src/main/java/com/example/myapp/users/UserController.java
+      services:
+        - src/main/java/com/example/myapp/users/UserService.java
+    angular:
+      components:
+        - src/app/users/
+      services:
+        - src/app/users/user.service.ts
+    approved: false
